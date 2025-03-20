@@ -11,47 +11,70 @@ A development test for evaluation in a selection process.
 Observing skills in software development, code organization, best practices, and technical problem-solving.
 
 ## Getting Started
-# Introduction to .NET 8
+Requirements
 
-## Prerequisites
+Before starting, make sure your machine meets the following requirements:
 
-Before you begin, make sure you have the .NET 8 SDK installed on your machine. You can check this by running the following command in your terminal:
+.NET 8 SDK installed
 
-```bash
-dotnet --version
-You should see a version that starts with 8.. Additionally, ensure that the necessary Entity Framework Core packages are installed in your project.
+PostgreSQL installed and configured
 
-Updating Migrations
-When you make changes to your data model, it's important to apply those changes to your database. This can be done through the migration update command, which applies all pending migrations to the database.
+Git installed
 
-Command to Update Migrations
-To apply all pending migrations to your database, use the following command:
+Cloning the Repository
 
-CopyReplit
-dotnet ef database update --project C:\Users\Lucaz\Desktop\Work\Tests\template\backend\src\Ambev.DeveloperEvaluation.ORM\Ambev.DeveloperEvaluation.ORM.csproj --startup-project C:\Users\Lucaz\Desktop\Work\Tests\template\backend\src\Ambev.DeveloperEvaluation.WebApi\Ambev.DeveloperEvaluation.WebApi.csproj
+To download the project, run the following command in the terminal:
 
-Command Parameters
---project: This parameter specifies the path to the project where the DbContext configuration is located. In this case, it is:
-Copy
-C:\Users\Lucaz\Desktop\Work\Tests\template\backend\src\Ambev.DeveloperEvaluation.ORM\Ambev.DeveloperEvaluation.ORM.csproj
---startup-project: This parameter indicates the path of the project that should be used to run the application. Normally, this is the Web API project:
-Copy
-C:\Users\Lucaz\Desktop\Work\Tests\template\backend\src\Ambev.DeveloperEvaluation.WebApi\Ambev.DeveloperEvaluation.WebApi.csproj
-Example Command
-CopyReplit
+git clone https://github.com/Sttress/Ambev.DeveloperEvaluation.git
 
-dotnet ef database update --project C:\Users\Lucaz\Desktop\Work\Tests\template\backend\src\Ambev.DeveloperEvaluation.ORM\Ambev.DeveloperEvaluation.ORM.csproj --startup-project C:\Users\Lucaz\Desktop\Work\Tests\template\backend\src\Ambev.DeveloperEvaluation.WebApi\Ambev.DeveloperEvaluation.WebApi.csproj
-Checking Applied Migrations
-To view all the migrations that have been applied to your database, you can run the following command:
+Then, navigate to the project directory:
 
-CopyReplit
-dotnet ef migrations list --project C:\Users\Lucaz\Desktop\Work\Tests\template\backend\src\Ambev.DeveloperEvaluation.ORM\Ambev.DeveloperEvaluation.ORM.csproj
-This will display a list of all migrations and their status.
+cd repository-name
 
-Conclusion
-You are now ready to update migrations in your .NET 8 application using Entity Framework Core!
+Installing Dependencies
 
-Copy
+Ensure all project dependencies are installed by running:
+
+dotnet restore
+
+Configuring the Database
+
+Before running the project, you need to apply database migrations.
+Execute the following command in the Package Manager Console (PMC):
+
+PM> dotnet ef database update \
+    --project C:\Users\Lucaz\Desktop\Trabalho\Testes\template\backend\src\Ambev.DeveloperEvaluation.ORM\Ambev.DeveloperEvaluation.ORM.csproj \
+    --startup-project C:\Users\Lucaz\Desktop\Trabalho\Testes\template\backend\src\Ambev.DeveloperEvaluation.WebApi\Ambev.DeveloperEvaluation.WebApi.csproj \
+    --connection "Host=localhost;Port=5432;Database=your_database;Username=your_user;Password=your_password"
+
+If using the terminal (CLI), run:
+
+dotnet ef database update \
+    --project "C:/Users/Lucaz/Desktop/Trabalho/Testes/template/backend/src/Ambev.DeveloperEvaluation.ORM/Ambev.DeveloperEvaluation.ORM.csproj" \
+    --startup-project "C:/Users/Lucaz/Desktop/Trabalho/Testes/template/backend/src/Ambev.DeveloperEvaluation.WebApi/Ambev.DeveloperEvaluation.WebApi.csproj" \
+    --connection "Host=localhost;Port=5432;Database=your_database;Username=your_user;Password=your_password"
+
+Running the Project
+
+After configuring the database, start the application with:
+
+dotnet run --project src/Ambev.DeveloperEvaluation.WebApi/Ambev.DeveloperEvaluation.WebApi.csproj
+
+The API will be available at: http://localhost:5000 or https://localhost:5001.
+
+Testing the API
+
+To verify if the API is running correctly, access:
+
+curl -X GET http://localhost:5000/api/status
+
+Or open the browser and go to:
+
+http://localhost:5000/swagger
+
+Final Considerations
+
+If you encounter any issues, check the console logs and ensure all dependencies are correctly installed. If necessary, contact the project team.
 
 ### Notes
 
